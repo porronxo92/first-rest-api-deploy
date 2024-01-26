@@ -1,0 +1,38 @@
+### Recuperar todas las peliculas 
+GET http://localhost:1234/movies
+
+### Recuperar las peliculas por id
+GET http://localhost:1234/movies/2
+
+### Recuperar las peliculas por genero. El 
+GET http://localhost:1234/movies?genre=drama
+
+### Crear una pelicula
+###/*creando la API con las validaciones ZOD este tipo de parametros los obviamos y 
+### continuamos con los datos que realmente necesitamos para realizar 
+### la accion para lo que esta definida la API */
+POST http://localhost:1234/movies
+Content-Type: application/json
+
+{
+    "SQL":"SELECT * FROM users", 
+    
+    "name": "Inception",
+    "release_year": 2010,
+    "director": "Christopher Nolan",
+    "genre": "Science Fiction",
+    "duration": 148,
+    "poster": "https://i.pinimg.com/736x/34/c9/31/34c931cf8a603dbd50dda9347c7fca00.jpg"
+}
+
+###Actualizar una pelicula
+### PATCH es para actualizar una parte del recurso al que estamos accediendo. 
+### PUT es para actualiar el recurso completo. 
+PATCH http://localhost:1234/movies/2
+Content-Type: application/json
+
+{
+    "id":123,
+    "duration": 569,
+    "release_year": 2013
+}
