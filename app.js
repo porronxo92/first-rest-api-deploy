@@ -16,7 +16,7 @@ app.use(express.json())
 
 //Propia libreria de NodeJS para hacer un middleware, pero es un middleware qeu permite acceso a todos los origin *
 //Tambien para el OPTION de los metodos complejos
-//app.use(cors()) --> Para aceptar todo con un *
+app.use(cors()) //--> Para aceptar todo con un *
 
 /*app.use(
   cors({
