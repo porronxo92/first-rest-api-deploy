@@ -12,12 +12,13 @@ const PORT = process.env.PORT ?? 1234
 //Para controlar los origenes, podemos hacer un array de origenes y ver si el origen esta dentro
 const ORIGENES_ACCEPTED = ['http://localhost:55656', 'http://localhost:4555', 'http://localhost:XXXX']
 
-//app.use(express.json())
+app.use(express.json())
 
 //Propia libreria de NodeJS para hacer un middleware, pero es un middleware qeu permite acceso a todos los origin *
 //Tambien para el OPTION de los metodos complejos
 //app.use(cors()) --> Para aceptar todo con un *
-app.use(
+
+/*app.use(
   cors({
     origin: (origin, callback) => {
       const ORIGENES_ACCEPTED = ['http://localhost:55656', 'http://localhost:4555', 'http://localhost:XXXX']
@@ -25,7 +26,7 @@ app.use(
       return callback(new Error('Not allowed by CORS'))
     },
   })
-)
+)*/
 
 //CORS para metodos normales: GET/HEAD/POST
 //Metodos complejos: PUT/PATCH/DELETE -- Para que estos metodos de la API tengan CORS hay que crear un nuevo evento
@@ -121,5 +122,5 @@ app.patch('/movies/:id', (req, res) => {
 })
 
 app.listen(PORT, () => {
-  console.log(`Server listening port => http://localhost:${PORT}`)
+  console.log(`Server listening port => ${PORT}`)
 })
