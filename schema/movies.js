@@ -1,4 +1,4 @@
-const z = require('zod')
+import z from 'zod'
 
 const movieSchema = z.object({
   //ZOD sirve para poder hacer comprobaciones de todos los campos que nos llegan en la request.body desde el cliente
@@ -13,18 +13,15 @@ const movieSchema = z.object({
   poster: z.string().url({
     message: 'URL not valid. Must be a valid URL',
   }),
-  genre: z.string(),
+  genre: z.array(z.enum(['drama', 'sci-fi', 'adventure', 'crime', 'musical', 'action']), {
+    required_error: 'Movie genre is required',
+  }),
 })
 
-function validatePartialMovie(object) {
+export function validatePartialMovie(object) {
   return movieSchema.partial().safeParse(object)
 }
 
-function validateMovie(object) {
+export function validateMovie(object) {
   return movieSchema.safeParse(object)
-}
-
-module.exports = {
-  validateMovie,
-  validatePartialMovie,
 }
